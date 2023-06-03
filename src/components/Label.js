@@ -27,7 +27,7 @@ export default (domComponents, { editor, ...config }) => {
 
   // Force defaults
   const { styles = "" } = def.model.defaults;
-  const defaultStyles = ` [data-gjs-type="${type}"]{ display: flex; }`;
+  const defaultStyles = ` [data-gjs-type="${type}"]{ color: inherit; font-family: inherit; }`;
   def.model.defaults.styles = styles + defaultStyles;
 
   domComponents.addType(type, def);

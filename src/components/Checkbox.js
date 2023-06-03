@@ -1,4 +1,4 @@
-import { TYPES, RESIZER_ALL, RESIZABLE_PROPS } from "../consts";
+import { TYPES } from "../consts";
 
 export default (domComponents, { editor, ...config }) => {
   const { checkboxProps = {} } = config;
@@ -8,10 +8,7 @@ export default (domComponents, { editor, ...config }) => {
     model: {
       defaults: {
         name: "Checkbox",
-        resizable: {
-          // updateTarget: (el, rect, opt) => {},
-          ...RESIZER_ALL,
-        },
+        traits: [], // Value/true/false/variable 
         ...config.checkboxProps,
       },
 
