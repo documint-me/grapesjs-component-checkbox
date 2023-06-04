@@ -8,7 +8,7 @@ export default (domComponents, { editor, ...config }) => {
     model: {
       defaults: {
         name: "Toggle",
-        tagName: 'input',
+        tagName: "input",
         draggable: `[data-gs-type="${TYPES.checkbox}"]`, // this can be DRAGGED INTO THESE components
         droppable: false,
         highlightable: false,
@@ -16,7 +16,7 @@ export default (domComponents, { editor, ...config }) => {
         selectable: false,
         copyable: false,
         hoverable: false,
-        attributes: { type: 'checkbox' }, // OR radio
+        attributes: { type: "checkbox" }, // OR radio
         traits: [],
         ...config.toggleProps,
       },

@@ -28,6 +28,7 @@ export default (domComponents, { editor, ...config }) => {
             name: "varName",
             label: "Variable Name",
             parent: "data-value=false",
+            placeholder: "e.g. var",
             changeProp: true,
           },
           {
@@ -38,7 +39,7 @@ export default (domComponents, { editor, ...config }) => {
           },
         ],
         attributes: {
-          "data-value": "true"
+          "data-value": "true",
         },
         ...config.checkboxProps,
       },
@@ -107,25 +108,35 @@ export default (domComponents, { editor, ...config }) => {
         });
 
         const comps = this.components().models[1].components();
-        const tChild =  comps.length === 1 && comps.models[0];
-        const chCnt = (tChild && tChild.is('textnode') && tChild.get('content')) || '';
-        const text = chCnt || this.get('text');
-        this.set('text', text);
-        this.on('change:text', this.__onTextChange);
-        (text !== chCnt) && this.__onTextChange();
+        const tChild = comps.length === 1 && comps.models[0];
+        const chCnt =
+          (tChild && tChild.is("textnode") && tChild.get("content")) || "";
+        const text = chCnt || this.get("text");
+        this.set("text", text);
+        this.on("change:text", this.__onTextChange);
+        text !== chCnt && this.__onTextChange();
 
-        this.on('change:varName', this.handleVariableChange);
-        this.on('change:checked', this.handleCheckedChange);
+        this.on("change:attributes:data-value", this.handleValueChange);
+        this.on("change:varName", this.handleVariableChange);
+        this.on("change:checked", this.handleCheckedChange);
+      },
+
+      handleValueChange() {
+        const value = this.getAttributes()["data-value"];
+        if (value) this.handleCheckedChange();
+        else this.handleVariableChange();
       },
 
       handleVariableChange() {
-        const checked = this.get('varName')
-        this.getCheckbox().addAttributes({ checked: `{{${checked}}}` })
+        const varName = this.get("varName");
+        this.getCheckbox().addAttributes({
+          checked: varName ? `{{${varName}}}` : false,
+        });
       },
 
       handleCheckedChange() {
-        const checked = this.get('checked')
-        this.getCheckbox().addAttributes({ checked })
+        const checked = !!this.get("checked");
+        this.getCheckbox().addAttributes({ checked });
       },
 
       getLabel() {
@@ -137,7 +148,7 @@ export default (domComponents, { editor, ...config }) => {
       },
 
       __onTextChange() {
-        this.getLabel().setText(this.get('text'));
+        this.getLabel().setText(this.get("text"));
       },
     },
   };
