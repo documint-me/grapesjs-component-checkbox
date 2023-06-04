@@ -5,12 +5,11 @@ export default (domComponents, { editor, ...config }) => {
   const type = labelProps.type || TYPES.label;
 
   const def = {
-    extend: 'text',
+    extend: "text",
     model: {
       defaults: {
         name: "Label",
-        tagName: 'label',
-        components: 'Label',
+        tagName: "label",
         draggable: `[data-gs-type="${TYPES.checkbox}"]`, // this can be DRAGGED INTO THESE components
         droppable: false,
         highlightable: false,
@@ -22,6 +21,10 @@ export default (domComponents, { editor, ...config }) => {
       },
 
       init() {},
+
+      setText(text) {
+        this.components(text);
+      },
     },
   };
 
