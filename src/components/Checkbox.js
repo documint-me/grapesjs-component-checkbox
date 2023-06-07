@@ -155,7 +155,7 @@ export default (domComponents, { editor, ...config }) => {
 
   // Force defaults
   const { styles = "" } = def.model.defaults;
-  const defaultStyles = ` [data-gjs-type="${type}"]{ display: flex; align-items: center; justify-content: center; }`;
+  const defaultStyles = ` [data-gjs-type="${type}"]{ display: flex; align-items: center; justify-content: center; padding: 10px; }`;
   def.model.defaults.styles = styles + defaultStyles;
 
   domComponents.addType(type, def);

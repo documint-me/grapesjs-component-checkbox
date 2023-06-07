@@ -78,6 +78,33 @@
           height: '100%',
           noticeOnUnload: 0,
           storageManager: { autoload: 0 },
+          styleManager: {
+            sectors: [{
+              sectorId: 'icon',
+              name: 'Icon',
+              open: false,
+              properties: [
+                {
+                  name: 'Type',
+                  id: 'checkbox-box-type',
+                  property: 'checkbox-box-type',
+                  type: 'checkbox-box-type',
+                  full: true,
+                }]
+            }, {
+              sectorId: 'label',
+              name: 'Label',
+              open: false,
+              properties: [
+                {
+                  name: 'Position',
+                  id: 'checkbox-text-position',
+                  property: 'checkbox-text-position',
+                  type: 'checkbox-text-position',
+                  full: true,
+                }]
+            }]
+          },
           container: '#gjs',
           fromElement: true,
           plugins: ['grapesjs-component-checkbox'],

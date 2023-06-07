@@ -1,6 +1,7 @@
 import loadComponents from "./components";
 import loadBlocks from "./blocks";
 import defaultOptions from "./options";
+import style from "./style";
 
 export default (editor, opts = {}) => {
   const options = {
@@ -13,4 +14,7 @@ export default (editor, opts = {}) => {
 
   // Add blocks
   loadBlocks(editor, options);
+
+  // Add style types
+  style(editor, options);
 };
