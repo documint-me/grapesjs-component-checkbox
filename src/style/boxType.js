@@ -4,9 +4,22 @@ export default function (editor, opts = {}) {
     selectedClassName: "selected",
     defaultValues: {
       type: "checkbox",
-      yes: "",
-      no: "",
     },
+    options: [
+      {
+        value: "checkbox",
+      },
+      {
+        label: "xbox",
+        value: "x box",
+      },
+      {
+        value: "radio",
+      },
+      {
+        value: "custom",
+      },
+    ],
     ...opts,
   };
 

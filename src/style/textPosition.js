@@ -5,6 +5,8 @@ export default function (editor, opts = {}) {
     defaultValues: {
       position: "right",
     },
+    labelLeft: "Left",
+    labelRight: "Right",
     ...opts,
   };
 
