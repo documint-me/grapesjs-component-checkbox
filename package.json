@@ -1,7 +1,7 @@
 {
   "name": "@documint/grapesjs-component-checkbox",
   "license": "MIT",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Checkbox component for grapesjs",
   "author": "Documint",
   "main": "dist/grapesjs-component-checkbox.min.js",
