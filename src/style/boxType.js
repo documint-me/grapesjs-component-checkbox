@@ -61,6 +61,9 @@ export default function (editor, opts = {}) {
       return el;
     },
 
+    // Propagate UI changes to target
+    emit({ updateStyle }, { css, partial }) {},
+
     // Update UI when target is changed
     updateUI() {
       const { box, boxType } = this.getBoxType();
