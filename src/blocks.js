@@ -1,6 +1,6 @@
 import { TYPES, BLOCKS } from "./consts";
 
-const { checkbox, toggle, label } = TYPES;
+const { checkbox, toggle, label, icon } = TYPES;
 
 export const checkboxBlock = {
   label: "Checkbox",
@@ -11,7 +11,19 @@ export const checkboxBlock = {
     type: checkbox,
     components: [
       {
-        type: toggle,
+        droppable: false,
+        highlightable: false,
+        layerable: false,
+        selectable: false,
+        hoverable: false,
+        components: [
+          {
+            type: toggle,
+          },
+          {
+            type: icon,
+          },
+        ],
       },
       {
         type: label,
@@ -26,5 +38,6 @@ export default (editor, options) => {
   const { blocks = [], checkboxBlockProps = {} } = options;
 
   if (!blocks || !Array.isArray(blocks)) return;
-  if (blocks.includes(BLOCKS.checkbox)) bm.add(BLOCKS.checkbox, { ...checkboxBlock, ...checkboxBlockProps });
+  if (blocks.includes(BLOCKS.checkbox))
+    bm.add(BLOCKS.checkbox, { ...checkboxBlock, ...checkboxBlockProps });
 };

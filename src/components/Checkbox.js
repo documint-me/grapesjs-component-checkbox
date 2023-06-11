@@ -1,5 +1,53 @@
 import { TYPES } from "../consts";
 
+export const protectedCss = `
+[data-gjs-type="${TYPES.checkbox}"] input {
+  display: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: inherit;
+  border: none;
+  background-color: rgba(0,0,0,0);
+  box-sizing: border-box;
+  width: 100%;
+  position: relative;
+  padding: 5px;
+  z-index: 1;
+}
+[data-gjs-type="${TYPES.checkbox}"] i {
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  transform: rotate(45deg);
+  box-sizing: border-box;
+  display: block;
+  height: 14px;
+  margin: 0 5px;
+  width: 6px;
+}
+[data-gjs-type="${TYPES.checkbox}"] input:checked + i {
+  border-color: rgba(0, 0, 0, 0.5);
+  border-width: 0 2px 2px 0;
+  border-style: solid;
+}
+
+[data-gjs-type="${TYPES.checkbox}"] div {
+  margin: 0 10px;
+  padding: 0;
+  width: 17px;
+  height: 17px;
+  display: block;
+  cursor: pointer;
+  background-color: rgba(0,0,0,.1);
+  border: none;
+  box-shadow: none;
+  border-radius: 2px;
+  box-sizing: border-box;
+  position: relative;
+}
+`;
+
 export default (domComponents, { editor, ...config }) => {
   const { checkboxProps = {} } = config;
   const type = checkboxProps.type || TYPES.checkbox;
@@ -144,7 +192,7 @@ export default (domComponents, { editor, ...config }) => {
       },
 
       getCheckbox() {
-        return this.components().models[0];
+        return this.components().models[0].components().models[0];
       },
 
       __onTextChange() {
@@ -155,7 +203,9 @@ export default (domComponents, { editor, ...config }) => {
 
   // Force defaults
   const { styles = "" } = def.model.defaults;
-  const defaultStyles = ` [data-gjs-type="${type}"]{ display: flex; align-items: center; justify-content: center; padding: 10px; }`;
+  const defaultStyles =
+    ` [data-gjs-type="${type}"]{ display: flex; align-items: center; justify-content: center; padding: 10px; }` +
+    protectedCss;
   def.model.defaults.styles = styles + defaultStyles;
 
   domComponents.addType(type, def);
