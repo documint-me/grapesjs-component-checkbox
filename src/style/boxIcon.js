@@ -13,7 +13,14 @@ export default function (editor, opts = {}) {
     ...opts,
   };
 
-  const { name, defaultValues } = opts;
+  const {
+    name,
+    defaultValues,
+    labelFalse,
+    labelTrue,
+    optionsTrue,
+    optionsFalse,
+  } = opts;
   const sm = editor.StyleManager;
 
   sm.addType(name, {
@@ -24,18 +31,22 @@ export default function (editor, opts = {}) {
       el.innerHTML = `<div class="gjs-sm-field gjs-sm-composite">
         <span id="gjs-sm-input-holder">
           <div class="gjs-sm-properties">
-            <div class="gjs-sm-property gjs-sm-number gjs-sm-integer gjs-sm-property__icon-true gjs-sm-property--full">
+            <div class="gjs-sm-property gjs-sm-property__icon-true gjs-sm-property--full">
               <div class="gjs-sm-label" data-sm-label="">
-                <span class="gjs-sm-icon " title="">if true</span>
+                <span class="gjs-sm-icon " title="">${labelTrue}</span>
               </div>
               <div class="gjs-fields" data-sm-fields="">
                 <div class="gjs-field gjs-select">
-                  <span id="gjs-sm-input-holder">
+                  <span id="checkbox-icon-true">
                     <select>
-                      <option value="checkbox">checkbox</option>
-                      <option value="xbox">x box</option>
-                      <option value="radio">radio</option>
-                      <option value="custom">custom</option>
+                    ${optionsTrue
+                      .map(
+                        (o) =>
+                          `<option value="${o.value}" ${
+                            defaultValues.yes === o.value ? "selected" : ""
+                          }>${o.label || o.value}</option>`
+                      )
+                      .join("")}
                     </select>
                   </span>
                   <div class="gjs-sel-arrow">
@@ -44,18 +55,22 @@ export default function (editor, opts = {}) {
                 </div>
               </div>
             </div>
-            <div class="gjs-sm-property gjs-sm-number gjs-sm-integer gjs-sm-property__icon-false gjs-sm-property--full">
+            <div class="gjs-sm-property gjs-sm-property__icon-false gjs-sm-property--full">
               <div class="gjs-sm-label" data-sm-label="">
-                <span class="gjs-sm-icon " title="">if false</span>
+                <span class="gjs-sm-icon " title="">${labelFalse}</span>
               </div>
               <div class="gjs-fields" data-sm-fields="">
                 <div class="gjs-field gjs-select">
-                  <span id="gjs-sm-input-holder">
+                  <span id="checkbox-icon-false">
                     <select>
-                      <option value="checkbox">checkbox</option>
-                      <option value="xbox">x box</option>
-                      <option value="radio">radio</option>
-                      <option value="custom">custom</option>
+                    ${optionsFalse
+                      .map(
+                        (o) =>
+                          `<option value="${o.value}" ${
+                            defaultValues.no === o.value ? "selected" : ""
+                          }>${o.label || o.value}</option>`
+                      )
+                      .join("")}
                     </select>
                   </span>
                   <div class="gjs-sel-arrow">
@@ -72,9 +87,6 @@ export default function (editor, opts = {}) {
 
       return el;
     },
-
-    // Propagate UI changes to target
-    emit({ updateStyle }, { css, partial }) {},
 
     // Update UI when target is changed
     updateUI() {},
