@@ -3,11 +3,37 @@ export default function (editor, opts = {}) {
     name: "checkbox-icon",
     selectedClassName: "selected",
     defaultValues: {
-      yes: "",
-      no: "",
+      yes: "check",
+      no: "check",
     },
-    optionsTrue: [],
-    optionsFalse: [],
+    optionsTrue: [
+      {
+        value: "check",
+      },
+      {
+        value: "dot",
+      },
+      {
+        value: "cross",
+      },
+      {
+        value: "custom",
+      },
+    ],
+    optionsFalse: [
+      {
+        value: "check",
+      },
+      {
+        value: "dot",
+      },
+      {
+        value: "cross",
+      },
+      {
+        value: "custom",
+      },
+    ],
     labelTrue: "if true",
     labelFalse: "if false",
     ...opts,

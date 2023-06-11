@@ -16,7 +16,7 @@ export default (domComponents, { editor, ...config }) => {
         selectable: false,
         copyable: false,
         hoverable: false,
-        attributes: { type: "checkbox" }, // OR radio
+        attributes: { type: "checkbox", "data-type": "checkbox" }, // OR radio
         traits: [],
         ...config.toggleProps,
       },

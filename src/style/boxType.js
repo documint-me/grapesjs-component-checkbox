@@ -77,7 +77,7 @@ export default function (editor, opts = {}) {
       const { box, boxType } = this.getBoxType();
 
       // set style based on value from UI
-      box.addAttributes({ type: inType });
+      box.addAttributes({ "data-type": inType });
     },
 
     getBoxType() {
@@ -89,7 +89,7 @@ export default function (editor, opts = {}) {
 
       if (!box || !box.getAttributes) return {};
 
-      const boxType = box.getAttributes().type;
+      const boxType = box.getAttributes()["data-type"];
 
       return { box, boxType };
     },
