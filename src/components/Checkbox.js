@@ -26,13 +26,46 @@ export const protectedCss = `
   margin: 0 5px;
   width: 6px;
 }
+[data-gjs-type="${TYPES.checkbox}"] [data-type="radio"] i {
+  height: 11px;
+  width: 11px;
+  margin: 3px;
+}
+[data-gjs-type="${TYPES.checkbox}"] [data-type="xbox"] i {
+  display: contents;
+}
+[data-gjs-type="${TYPES.checkbox}"] [data-type="xbox"] i:before,
+[data-gjs-type="${TYPES.checkbox}"] [data-type="xbox"] i:after {
+  position: absolute;
+  left: 7.5px;
+  content: ' ';
+  height: 17px;
+  width: 2px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+[data-gjs-type="${TYPES.checkbox}"] [data-type="xbox"] i:before {
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+[data-gjs-type="${TYPES.checkbox}"] [data-type="xbox"] i:after {
+  -ms-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
 [data-gjs-type="${TYPES.checkbox}"] input:checked + i {
   border-color: rgba(0, 0, 0, 0.5);
   border-width: 0 2px 2px 0;
   border-style: solid;
 }
-
-[data-gjs-type="${TYPES.checkbox}"] div {
+[data-gjs-type="${TYPES.checkbox}"] [data-type="radio"] input:checked + i {
+  border-width: 0;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+[data-gjs-type="${TYPES.checkbox}"] [data-gjs-type="${TYPES.holder}"] {
   margin: 0 10px;
   padding: 0;
   width: 17px;
@@ -45,6 +78,9 @@ export const protectedCss = `
   border-radius: 2px;
   box-sizing: border-box;
   position: relative;
+}
+[data-gjs-type="${TYPES.checkbox}"] [data-gjs-type="${TYPES.holder}"][data-type="radio"] {
+  border-radius: 50%;
 }
 `;
 
@@ -187,12 +223,20 @@ export default (domComponents, { editor, ...config }) => {
         this.getCheckbox().addAttributes({ checked });
       },
 
+      getHolder() {
+        return this.components().models[0];
+      },
+
       getLabel() {
         return this.components().models[1];
       },
 
       getCheckbox() {
         return this.components().models[0].components().models[0];
+      },
+
+      getCheckIcon() {
+        return this.components().models[0].components().models[1];
       },
 
       __onTextChange() {

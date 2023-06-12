@@ -3,6 +3,7 @@ export const TYPES = {
   toggle: "dm-toggle",
   checkbox: "dm-checkbox",
   icon: "dm-toggle-icon",
+  holder: "dm-toggle-holder",
 };
 
 export const BLOCKS = {

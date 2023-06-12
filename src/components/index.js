@@ -2,6 +2,7 @@ import Toggle from "./Toggle";
 import Label from "./Label";
 import Checkbox from "./Checkbox";
 import Icon from "./Icon";
+import Holder from "./Holder";
 
 export default (editor, config = {}) => {
   const dc = editor.DomComponents;
@@ -10,5 +11,5 @@ export default (editor, config = {}) => {
     editor,
   };
 
-  [Toggle, Label, Icon, Checkbox].forEach((c) => c(dc, opts));
+  [Toggle, Label, Icon, Holder, Checkbox].forEach((c) => c(dc, opts));
 };

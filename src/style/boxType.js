@@ -83,9 +83,9 @@ export default function (editor, opts = {}) {
     getBoxType() {
       const checkbox = this.em.getSelected();
 
-      if (!checkbox || !checkbox.getCheckbox) return {};
+      if (!checkbox || !checkbox.getHolder) return {};
 
-      const box = checkbox.getCheckbox();
+      const box = checkbox.getHolder();
 
       if (!box || !box.getAttributes) return {};
 

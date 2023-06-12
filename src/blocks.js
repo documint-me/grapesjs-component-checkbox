@@ -1,6 +1,6 @@
 import { TYPES, BLOCKS } from "./consts";
 
-const { checkbox, toggle, label, icon } = TYPES;
+const { checkbox, toggle, label, icon, holder } = TYPES;
 
 export const checkboxBlock = {
   label: "Checkbox",
@@ -11,11 +11,7 @@ export const checkboxBlock = {
     type: checkbox,
     components: [
       {
-        droppable: false,
-        highlightable: false,
-        layerable: false,
-        selectable: false,
-        hoverable: false,
+        type: holder,
         components: [
           {
             type: toggle,

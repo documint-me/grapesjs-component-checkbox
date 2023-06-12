@@ -1,27 +1,23 @@
 import { TYPES } from "../consts";
 
 export default (domComponents, { editor, ...config }) => {
-  const { toggleProps = {} } = config;
-  const type = toggleProps.type || TYPES.toggle;
+  const { holderProps = {} } = config;
+  const type = holderProps.type || TYPES.holder;
 
   const def = {
     model: {
       defaults: {
-        name: "Toggle",
-        tagName: "input",
+        name: "Holder",
         draggable: `[data-gs-type="${TYPES.checkbox}"]`, // this can be DRAGGED INTO THESE components
         droppable: false,
         highlightable: false,
         layerable: false,
         selectable: false,
-        copyable: false,
         hoverable: false,
-        attributes: { type: "checkbox" }, // OR radio
         traits: [],
-        ...config.toggleProps,
+        attributes: { "data-type": "checkbox" },
+        ...config.holderProps,
       },
-
-      changeType() {},
     },
   };
 
