@@ -7,10 +7,13 @@ export default function (editor, opts = {}) {
     },
     labelLeft: "Left",
     labelRight: "Right",
+    labelTop: "Top",
+    labelBottom: "Bottom",
     ...opts,
   };
 
-  const { name, defaultValues, labelLeft, labelRight } = opts;
+  const { name, defaultValues, labelLeft, labelRight, labelTop, labelBottom } =
+    opts;
   const sm = editor.StyleManager;
 
   sm.addType(name, {
@@ -21,16 +24,28 @@ export default function (editor, opts = {}) {
       el.innerHTML = `<div class="gjs-field gjs-field-radio">
         <div class="gjs-radio-items">
           <div class="gjs-radio-item">
-            <input type="radio" class="gjs-sm-radio" id="checkbox-text-left" name="pos" value="left" ${
-              defaultValues.position === "left" ? "checked" : ""
+            <input type="radio" class="gjs-sm-radio" id="checkbox-text-top" name="pos" value="top" ${
+              defaultValues.position === "top" ? "checked" : ""
             }>
-            <label class="gjs-radio-item-label" for="checkbox-text-left">${labelLeft}</label>
+            <label class="gjs-radio-item-label" for="checkbox-text-top">${labelTop}</label>
           </div>
           <div class="gjs-radio-item">
             <input type="radio" class="gjs-sm-radio" id="checkbox-text-right" name="pos" value="right" ${
               defaultValues.position === "right" ? "checked" : ""
             }>
             <label class="gjs-radio-item-label" for="checkbox-text-right">${labelRight}</label>
+          </div>
+          <div class="gjs-radio-item">
+            <input type="radio" class="gjs-sm-radio" id="checkbox-text-bottom" name="pos" value="bottom" ${
+              defaultValues.position === "bottom" ? "checked" : ""
+            }>
+            <label class="gjs-radio-item-label" for="checkbox-text-bottom">${labelBottom}</label>
+          </div>
+          <div class="gjs-radio-item">
+            <input type="radio" class="gjs-sm-radio" id="checkbox-text-left" name="pos" value="left" ${
+              defaultValues.position === "left" ? "checked" : ""
+            }>
+            <label class="gjs-radio-item-label" for="checkbox-text-left">${labelLeft}</label>
           </div>
         </div>
       </div>
@@ -64,10 +79,15 @@ export default function (editor, opts = {}) {
     },
 
     setLabelPosition(inPos) {
-      const { pos, label } = this.getLabelPosition();
+      const { pos, label, checkbox } = this.getLabelPosition();
 
       // set style based on value from UI
-      label.addStyle({ order: inPos === "right" ? "1" : "-1" });
+      const dir =
+        inPos === "" || inPos === "bottom"
+          ? { "flex-direction": inPos === "" ? "column-reverse" : "column" }
+          : { "flex-direction": "row" };
+      label.addStyle({ order: inPos === "left" ? "-1" : "1" });
+      checkbox.addStyle(dir);
     },
 
     getLabelPosition() {
@@ -79,9 +99,21 @@ export default function (editor, opts = {}) {
 
       if (!label || !label.getStyle) return {};
 
-      const style = label.getStyle().order;
+      const order = label.getStyle().order;
+      const direction = checkbox.getStyle()["flex-direction"];
 
-      return { pos: style === "-1" ? "" : "right", label };
+      return {
+        pos:
+          direction === "column"
+            ? "bottom"
+            : direction === "column-reverse"
+            ? "top"
+            : order === "-1"
+            ? "left"
+            : "right",
+        label,
+        checkbox,
+      };
     },
 
     // Clean memory if necessary
