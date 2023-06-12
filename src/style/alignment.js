@@ -5,9 +5,9 @@ export default function (editor, opts = {}) {
     defaultValues: {
       align: "center",
     },
-    labelLeft: "Left",
-    labelCenter: "Center",
-    labelRight: "Right",
+    labelLeft: "fas fa-objects-align-left",
+    labelCenter: "fas fa-objects-align-center-horizontal",
+    labelRight: "fas fa-objects-align-right",
     ...opts,
   };
 
@@ -25,19 +25,19 @@ export default function (editor, opts = {}) {
               <input type="radio" class="gjs-sm-radio" id="checkbox-align-left" name="align" value="left" ${
                 defaultValues.align === "left" ? "checked" : ""
               }>
-              <label class="gjs-radio-item-label" for="checkbox-align-left">${labelLeft}</label>
+              <label class="gjs-radio-item-label gjs-sm-icon ${labelLeft}" for="checkbox-align-left"></label>
             </div>
             <div class="gjs-radio-item">
               <input type="radio" class="gjs-sm-radio" id="checkbox-align-center" name="align" value="center" ${
                 defaultValues.align === "center" ? "checked" : ""
               }>
-              <label class="gjs-radio-item-label" for="checkbox-align-center">${labelCenter}</label>
+              <label class="gjs-radio-item-label gjs-sm-icon ${labelCenter}" for="checkbox-align-center"></label>
             </div>
             <div class="gjs-radio-item">
               <input type="radio" class="gjs-sm-radio" id="checkbox-align-bottom" name="align" value="right" ${
                 defaultValues.align === "right" ? "checked" : ""
               }>
-              <label class="gjs-radio-item-label" for="checkbox-align-bottom">${labelRight}</label>
+              <label class="gjs-radio-item-label gjs-sm-icon ${labelRight}" for="checkbox-align-bottom"></label>
             </div>
           </div>
         </div>
@@ -52,7 +52,7 @@ export default function (editor, opts = {}) {
         });
       });
 
-      this.em.on("component:selected", () => this.updateUI());
+      editor.on("component:selected", () => this.updateUI());
 
       return el;
     },
@@ -96,7 +96,7 @@ export default function (editor, opts = {}) {
     },
 
     getAlignment() {
-      const checkbox = this.em.getSelected();
+      const checkbox = editor.getSelected();
 
       if (!checkbox || !checkbox.getHolder0) return {};
 

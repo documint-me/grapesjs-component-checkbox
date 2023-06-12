@@ -109,7 +109,7 @@ export default function (editor, opts = {}) {
         </span>
       </div>`;
 
-      this.em.on("component:selected", () => this.updateUI());
+      editor.on("component:selected", () => this.updateUI());
 
       return el;
     },

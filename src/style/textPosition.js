@@ -5,10 +5,10 @@ export default function (editor, opts = {}) {
     defaultValues: {
       position: "right",
     },
-    labelLeft: "Left",
-    labelRight: "Right",
-    labelTop: "Top",
-    labelBottom: "Bottom",
+    labelLeft: "fas fa-arrow-left",
+    labelRight: "fas fa-arrow-right",
+    labelTop: "fas fa-arrow-top",
+    labelBottom: "fas fa-arrow-bottom",
     ...opts,
   };
 
@@ -27,25 +27,25 @@ export default function (editor, opts = {}) {
             <input type="radio" class="gjs-sm-radio" id="checkbox-text-top" name="pos" value="top" ${
               defaultValues.position === "top" ? "checked" : ""
             }>
-            <label class="gjs-radio-item-label" for="checkbox-text-top">${labelTop}</label>
+            <label class="gjs-radio-item-label gjs-sm-icon ${labelTop}" for="checkbox-text-top"></label>
           </div>
           <div class="gjs-radio-item">
             <input type="radio" class="gjs-sm-radio" id="checkbox-text-right" name="pos" value="right" ${
               defaultValues.position === "right" ? "checked" : ""
             }>
-            <label class="gjs-radio-item-label" for="checkbox-text-right">${labelRight}</label>
+            <label class="gjs-radio-item-label gjs-sm-icon ${labelRight}" for="checkbox-text-right"></label>
           </div>
           <div class="gjs-radio-item">
             <input type="radio" class="gjs-sm-radio" id="checkbox-text-bottom" name="pos" value="bottom" ${
               defaultValues.position === "bottom" ? "checked" : ""
             }>
-            <label class="gjs-radio-item-label" for="checkbox-text-bottom">${labelBottom}</label>
+            <label class="gjs-radio-item-label gjs-sm-icon ${labelBottom}" for="checkbox-text-bottom"></label>
           </div>
           <div class="gjs-radio-item">
             <input type="radio" class="gjs-sm-radio" id="checkbox-text-left" name="pos" value="left" ${
               defaultValues.position === "left" ? "checked" : ""
             }>
-            <label class="gjs-radio-item-label" for="checkbox-text-left">${labelLeft}</label>
+            <label class="gjs-radio-item-label gjs-sm-icon ${labelLeft}" for="checkbox-text-left"></label>
           </div>
         </div>
       </div>
@@ -60,7 +60,7 @@ export default function (editor, opts = {}) {
         });
       });
 
-      this.em.on("component:selected", () => this.updateUI());
+      editor.on("component:selected", () => this.updateUI());
 
       return el;
     },
@@ -91,7 +91,7 @@ export default function (editor, opts = {}) {
     },
 
     getLabelPosition() {
-      const checkbox = this.em.getSelected();
+      const checkbox = editor.getSelected();
 
       if (!checkbox || !checkbox.getLabel) return {};
 

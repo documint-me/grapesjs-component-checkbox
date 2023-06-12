@@ -56,7 +56,7 @@ export default function (editor, opts = {}) {
         this.setBoxType(target.value);
       });
 
-      this.em.on("component:selected", () => this.updateUI());
+      editor.on("component:selected", () => this.updateUI());
 
       return el;
     },
@@ -81,7 +81,7 @@ export default function (editor, opts = {}) {
     },
 
     getBoxType() {
-      const checkbox = this.em.getSelected();
+      const checkbox = editor.getSelected();
 
       if (!checkbox || !checkbox.getHolder) return {};
 

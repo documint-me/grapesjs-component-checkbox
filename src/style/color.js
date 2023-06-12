@@ -18,7 +18,7 @@ export default function (editor, opts = {}) {
       el.classList.add(name, "gjs-sm-property--full");
       el.innerHTML = `<div class="gjs-field"></div>`;
 
-      this.em.on("component:selected", () => this.updateUI());
+      editor.on("component:selected", () => this.updateUI());
 
       return el;
     },

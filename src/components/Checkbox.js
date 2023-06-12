@@ -209,7 +209,11 @@ export default (domComponents, { editor, ...config }) => {
         this.on("change:attributes:data-value", this.handleValueChange);
         this.on("change:varName", this.handleVariableChange);
         this.on("change:checked", this.handleCheckedChange);
+
+        this.afterInit();
       },
+
+      afterInit() {},
 
       handleValueChange() {
         const value = this.getAttributes()["data-value"];
