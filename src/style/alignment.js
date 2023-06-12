@@ -34,10 +34,10 @@ export default function (editor, opts = {}) {
               <label class="gjs-radio-item-label" for="checkbox-align-center">${labelCenter}</label>
             </div>
             <div class="gjs-radio-item">
-              <input type="radio" class="gjs-sm-radio" id="checkbox-text-bottom" name="align" value="right" ${
+              <input type="radio" class="gjs-sm-radio" id="checkbox-align-bottom" name="align" value="right" ${
                 defaultValues.align === "right" ? "checked" : ""
               }>
-              <label class="gjs-radio-item-label" for="checkbox-text-bottom">${labelRight}</label>
+              <label class="gjs-radio-item-label" for="checkbox-align-bottom">${labelRight}</label>
             </div>
           </div>
         </div>
@@ -62,22 +62,14 @@ export default function (editor, opts = {}) {
 
     // Update UI when target is changed
     updateUI() {
-      const {
-        direction = "",
-        alignItems,
-        justifyContent,
-      } = this.getAlignment();
-      const align = !direction.includes("column")
-        ? justifyContent.includes("start")
+      const { direction = "", alignItems } = this.getAlignment();
+      const align = direction.includes("column")
+        ? alignItems.includes("start")
           ? ""
-          : justifyContent === "center"
+          : alignItems === "center"
           ? "center"
           : "right"
-        : alignItems.includes("start")
-        ? ""
-        : alignItems === "center"
-        ? "center"
-        : "right";
+        : "center";
 
       // set UI value based on label flex order
       const inputIn =
@@ -96,16 +88,9 @@ export default function (editor, opts = {}) {
                 : inAlign === "center"
                 ? "center"
                 : "flex-end",
-            "justify-content": "center",
           }
         : {
             "align-items": "center",
-            "justify-content":
-              inAlign === ""
-                ? "flex-start"
-                : inAlign === "center"
-                ? "center"
-                : "flex-end",
           };
       checkbox.addStyle(align);
     },
@@ -113,17 +98,19 @@ export default function (editor, opts = {}) {
     getAlignment() {
       const checkbox = this.em.getSelected();
 
-      if (!checkbox) return {};
+      if (!checkbox || !checkbox.getHolder0) return {};
 
-      const direction = checkbox.getStyle()["flex-direction"];
-      const alignItems = checkbox.getStyle()["align-items"] || "center";
-      const justifyContent = checkbox.getStyle()["justify-content"] || "center";
+      const box = checkbox.getHolder0();
+
+      if (!box || !box.getStyle) return {};
+
+      const direction = box.getStyle()["flex-direction"];
+      const alignItems = box.getStyle()["align-items"] || "center";
 
       return {
         direction,
-        checkbox,
+        checkbox: box,
         alignItems,
-        justifyContent,
       };
     },
 
