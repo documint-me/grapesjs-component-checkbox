@@ -1,8 +1,8 @@
 import { TYPES } from "../consts";
 
 export default (domComponents, { editor, ...config }) => {
-  const { labelProps = {} } = config;
-  const type = labelProps.type || TYPES.icon;
+  const { iconProps = {} } = config;
+  const type = iconProps.type || TYPES.icon;
 
   const def = {
     model: {
@@ -16,10 +16,8 @@ export default (domComponents, { editor, ...config }) => {
         selectable: false,
         hoverable: false,
         traits: [],
-        ...config.labelProps,
+        ...config.iconProps,
       },
-
-      init() {},
 
       setIcon(icon) {
         // Change icon class

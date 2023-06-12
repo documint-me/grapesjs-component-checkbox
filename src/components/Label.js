@@ -20,8 +20,6 @@ export default (domComponents, { editor, ...config }) => {
         ...config.labelProps,
       },
 
-      init() {},
-
       setText(text) {
         this.components(text);
       },
