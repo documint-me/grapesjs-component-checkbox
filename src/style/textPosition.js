@@ -112,7 +112,7 @@ export default function (editor, opts = {}) {
             ? "left"
             : "right",
         label,
-        checkbox,
+        checkbox: checkbox.getHolder0(),
       };
     },
 

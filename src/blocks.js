@@ -11,18 +11,23 @@ export const checkboxBlock = {
     type: checkbox,
     components: [
       {
-        type: holder,
+        type: holder + "-2",
         components: [
           {
-            type: toggle,
+            type: holder,
+            components: [
+              {
+                type: toggle,
+              },
+              {
+                type: icon,
+              },
+            ],
           },
           {
-            type: icon,
+            type: label,
           },
         ],
-      },
-      {
-        type: label,
       },
     ],
   },

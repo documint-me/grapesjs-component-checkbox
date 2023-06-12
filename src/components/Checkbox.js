@@ -41,7 +41,7 @@ export const protectedCss = `
   content: ' ';
   height: 17px;
   width: 2px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0);
 }
 [data-gjs-type="${TYPES.checkbox}"] [data-type="xbox"] i:before {
   -ms-transform: rotate(45deg);
@@ -65,8 +65,12 @@ export const protectedCss = `
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0.5);
 }
+[data-gjs-type="${TYPES.checkbox}"] [data-type="xbox"] input:checked + i:before,
+[data-gjs-type="${TYPES.checkbox}"] [data-type="xbox"] input:checked + i:after {
+  background-color: rgba(0, 0, 0, 0.5);
+}
 [data-gjs-type="${TYPES.checkbox}"] [data-gjs-type="${TYPES.holder}"] {
-  margin: 0 10px;
+  margin: 0 3px;
   padding: 0;
   width: 17px;
   height: 17px;
@@ -191,7 +195,9 @@ export default (domComponents, { editor, ...config }) => {
           });
         });
 
-        const comps = this.components().models[1].components();
+        const comps = this.components()
+          .models[0].components()
+          .models[1].components();
         const tChild = comps.length === 1 && comps.models[0];
         const chCnt =
           (tChild && tChild.is("textnode") && tChild.get("content")) || "";
@@ -223,20 +229,26 @@ export default (domComponents, { editor, ...config }) => {
         this.getCheckbox().addAttributes({ checked });
       },
 
-      getHolder() {
+      getHolder0() {
         return this.components().models[0];
       },
 
-      getLabel() {
-        return this.components().models[1];
-      },
-
-      getCheckbox() {
+      getHolder() {
         return this.components().models[0].components().models[0];
       },
 
-      getCheckIcon() {
+      getLabel() {
         return this.components().models[0].components().models[1];
+      },
+
+      getCheckbox() {
+        return this.components().models[0].components().models[0].components()
+          .models[0];
+      },
+
+      getCheckIcon() {
+        return this.components().models[0].components().models[0].components()
+          .models[1];
       },
 
       __onTextChange() {
