@@ -7,8 +7,8 @@ export default function (editor, opts = {}) {
     },
     labelLeft: "fas fa-arrow-left",
     labelRight: "fas fa-arrow-right",
-    labelTop: "fas fa-arrow-top",
-    labelBottom: "fas fa-arrow-bottom",
+    labelTop: "fas fa-arrow-up",
+    labelBottom: "fas fa-arrow-down",
     ...opts,
   };
 
