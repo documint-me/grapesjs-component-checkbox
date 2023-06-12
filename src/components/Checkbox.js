@@ -27,8 +27,8 @@ export const protectedCss = `
   width: 6px;
 }
 [data-gjs-type="${TYPES.checkbox}"] [data-type="radio"] i {
-  height: 11px;
-  width: 11px;
+  height: 1px;
+  width: 1px;
   margin: 3px;
 }
 [data-gjs-type="${TYPES.checkbox}"] [data-type="xbox"] i {
@@ -40,8 +40,9 @@ export const protectedCss = `
   left: 7.5px;
   content: ' ';
   height: 17px;
-  width: 2px;
-  background-color: rgba(0, 0, 0, 0);
+  border-width: 0;
+  border-color: inherit;
+  border-style: solid;
 }
 [data-gjs-type="${TYPES.checkbox}"] [data-type="xbox"] i:before {
   -ms-transform: rotate(45deg);
@@ -56,18 +57,17 @@ export const protectedCss = `
   transform: rotate(-45deg);
 }
 [data-gjs-type="${TYPES.checkbox}"] input:checked + i {
-  border-color: rgba(0, 0, 0, 0.5);
+  border-color: inherit;
   border-width: 0 2px 2px 0;
   border-style: solid;
 }
 [data-gjs-type="${TYPES.checkbox}"] [data-type="radio"] input:checked + i {
-  border-width: 0;
+  border-width: 11px 11px 0 0;
   border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.5);
 }
 [data-gjs-type="${TYPES.checkbox}"] [data-type="xbox"] input:checked + i:before,
 [data-gjs-type="${TYPES.checkbox}"] [data-type="xbox"] input:checked + i:after {
-  background-color: rgba(0, 0, 0, 0.5);
+  border-width: 0 2px 0 0;
 }
 [data-gjs-type="${TYPES.checkbox}"] [data-gjs-type="${TYPES.holder}"] {
   margin: 0 3px;

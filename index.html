@@ -80,6 +80,20 @@
           storageManager: { autoload: 0 },
           styleManager: {
             sectors: [{
+              sectorId: 'general',
+              name: 'General',
+              open: false,
+              buildProps: ['color'],
+              properties: [
+                {
+                  name: 'Color',
+                  id: 'color',
+                  property: 'color',
+                  type: 'color',
+                  full: true,
+                  default: 'black',
+                }]
+            }, {
               sectorId: 'icon',
               name: 'Icon',
               open: false,
