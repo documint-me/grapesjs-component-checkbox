@@ -15,9 +15,7 @@
   "keywords": [
     "grapesjs",
     "plugin",
-    "grid-system",
-    "grid-bootstrap",
-    "no-flex-box"
+    "checkbox"
   ],
   "babel": {
     "presets": [
