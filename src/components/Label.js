@@ -16,6 +16,7 @@ export default (domComponents, { editor, ...config }) => {
         layerable: false,
         selectable: false,
         hoverable: false,
+        editable: false,
         traits: [],
         ...config.labelProps,
       },
