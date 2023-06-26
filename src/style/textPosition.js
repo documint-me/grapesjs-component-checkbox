@@ -76,6 +76,7 @@ export default function (editor, opts = {}) {
       const inputIn =
         this.inputEl && this.inputEl.querySelector(`[value="${pos}"]`);
       inputIn && (inputIn.checked = true);
+      this.updateAlignment(pos === "" || pos === "bottom")
     },
 
     setLabelPosition(inPos) {
@@ -88,32 +89,44 @@ export default function (editor, opts = {}) {
           : { "flex-direction": "row" };
       label.addStyle({ order: inPos === "left" ? "-1" : "1" });
       checkbox.addStyle(dir);
+      this.updateAlignment(inPos === "" || inPos === "bottom")
     },
 
     getLabelPosition() {
       const checkbox = editor.getSelected();
 
-      if (!checkbox || !checkbox.getLabel) return {};
+      if (!checkbox || !checkbox.getLabel || !checkbox.getHolder0) return {};
 
       const label = checkbox.getLabel();
 
       if (!label || !label.getStyle) return {};
 
       const order = label.getStyle().order;
-      const direction = checkbox.getStyle()["flex-direction"];
+      const direction = checkbox.getHolder0().getStyle()["flex-direction"];
 
       return {
         pos:
           direction === "column"
             ? "bottom"
             : direction === "column-reverse"
-            ? "top"
+            ? ""
             : order === "-1"
             ? "left"
             : "right",
         label,
         checkbox: checkbox.getHolder0(),
       };
+    },
+
+    updateAlignment(isCol) {
+      const al = sm.getProperty('label', 'checkbox-alignment');
+      if (al && al.view && al.view.$el) {
+        if (isCol) {
+          al.view.$el.show()
+        } else {
+          al.view.$el && al.view.$el.hide()
+        }
+      }
     },
 
     // Clean memory if necessary
