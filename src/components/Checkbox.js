@@ -96,13 +96,7 @@ export default (domComponents, { editor, ...config }) => {
     model: {
       defaults: {
         name: "Checkbox",
-        text: "I'm a Checkbox",
         traits: [
-          {
-            name: "text",
-            label: "Label Text",
-            changeProp: true,
-          },
           {
             name: "data-value",
             type: "select",
@@ -195,17 +189,6 @@ export default (domComponents, { editor, ...config }) => {
           });
         });
 
-        const comps = this.components()
-          .models[0].components()
-          .models[1].components();
-        const tChild = comps.length === 1 && comps.models[0];
-        const chCnt =
-          (tChild && tChild.is("textnode") && tChild.get("content")) || "";
-        const text = chCnt || this.get("text");
-        this.set("text", text);
-        this.on("change:text", this.__onTextChange);
-        text !== chCnt && this.__onTextChange();
-
         this.on("change:attributes:data-value", this.handleValueChange);
         this.on("change:varName", this.handleVariableChange);
         this.on("change:checked", this.handleCheckedChange);
@@ -253,10 +236,6 @@ export default (domComponents, { editor, ...config }) => {
       getCheckIcon() {
         return this.components().models[0].components().models[0].components()
           .models[1];
-      },
-
-      __onTextChange() {
-        this.getLabel().setText(this.get("text"));
       },
     },
   };

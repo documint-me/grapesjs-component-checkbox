@@ -16,8 +16,8 @@ export default (domComponents, { editor, ...config }) => {
         layerable: false,
         selectable: false,
         hoverable: false,
-        editable: false,
         traits: [],
+        components: 'I\'m a checkbox',
         ...config.labelProps,
       },
 
