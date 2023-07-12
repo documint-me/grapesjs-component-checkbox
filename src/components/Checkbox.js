@@ -200,7 +200,7 @@ export default (domComponents, { editor, ...config }) => {
 
       handleValueChange() {
         const value = this.getAttributes()["data-value"];
-        if (value) this.handleCheckedChange();
+        if (value === "static") this.handleCheckedChange();
         else this.handleVariableChange();
       },
 
