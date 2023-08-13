@@ -114,6 +114,13 @@ export default (domComponents, { editor, ...config }) => {
             changeProp: true,
           },
           {
+            name: "varTrue",
+            label: "True Value",
+            parent: "data-value=variable",
+            placeholder: "e.g. yes",
+            changeProp: true,
+          },
+          {
             name: "checked",
             parent: "data-value=static",
             type: "checkbox",
@@ -207,7 +214,8 @@ export default (domComponents, { editor, ...config }) => {
       handleVariableChange() {
         const varName = this.get("varName");
         this.getCheckbox().addAttributes({
-          checked: varName ? `{{${varName}}}` : false,
+          checked: false,
+          "data-helper": `{{${varName}}}`,
         });
       },
 
@@ -217,25 +225,45 @@ export default (domComponents, { editor, ...config }) => {
       },
 
       getHolder0() {
-        return this.components().models[0];
+        try {
+          return this.components().models[0];
+        } catch (error) {
+          return false;
+        }
       },
 
       getHolder() {
-        return this.components().models[0].components().models[0];
+        try {
+          return this.components().models[0].components().models[0];
+        } catch (error) {
+          return false;
+        }
       },
 
       getLabel() {
-        return this.components().models[0].components().models[1];
+        try {
+          return this.components().models[0].components().models[1];
+        } catch (error) {
+          return false;
+        }
       },
 
       getCheckbox() {
-        return this.components().models[0].components().models[0].components()
-          .models[0];
+        try {
+          return this.components().models[0].components().models[0].components()
+            .models[0];
+        } catch (error) {
+          return false;
+        }
       },
 
       getCheckIcon() {
-        return this.components().models[0].components().models[0].components()
-          .models[1];
+        try {
+          return this.components().models[0].components().models[0].components()
+            .models[1];
+        } catch (error) {
+          return false;
+        }
       },
     },
   };
