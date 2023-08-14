@@ -72,15 +72,17 @@ export default (domComponents, { editor, ...config }) => {
         }
 
         const wrapper = this.getWrapper();
+        const value = wrapper.getAttributes()["data-value"];
         let varName;
         let varTrue;
         if (wrapper) {
           varName = wrapper.get("varName");
           varTrue = wrapper.get("varTrue");
         }
-        const helper = varName
-          ? `{{$checked ${varName} ${varTrue ? `"${varTrue}"` : ""}}}`
-          : "";
+        const helper =
+          varName && value !== "static"
+            ? `{{$checked ${varName} ${varTrue ? `"${varTrue}"` : ""}}}`
+            : "";
 
         const attrString = attrs.length ? ` ${attrs.join(" ")}` : "";
         const inner = model.getInnerHTML(opts);
