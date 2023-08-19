@@ -81,7 +81,7 @@ export default (domComponents, { editor, ...config }) => {
         }
         const helper =
           varName && value !== "static"
-            ? `{{$checked ${varName} ${varTrue ? `"${varTrue}"` : ""}}}`
+            ? `{{$checked ${varName}${varTrue ? ` "${varTrue}"` : ""}}}`
             : "";
 
         const attrString = attrs.length ? ` ${attrs.join(" ")}` : "";

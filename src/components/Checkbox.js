@@ -117,7 +117,7 @@ export default (domComponents, { editor, ...config }) => {
             name: "varTrue",
             label: "True Value",
             parent: "data-value=variable",
-            placeholder: "e.g. yes",
+            placeholder: "true",
             changeProp: true,
           },
           {
@@ -215,7 +215,7 @@ export default (domComponents, { editor, ...config }) => {
         const varName = this.get("varName");
         this.getCheckbox().addAttributes({
           checked: false,
-          "data-helper": `{{${varName}}}`,
+          "data-helper": varName ? `{{${varName}}}` : '',
         });
       },
 
