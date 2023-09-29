@@ -16,9 +16,9 @@ export default function (editor, opts = {}) {
       {
         value: "cross",
       },
-      {
-        value: "custom",
-      },
+      // {
+      //   value: "custom",
+      // },
     ],
     optionsFalse: [
       {
@@ -30,9 +30,9 @@ export default function (editor, opts = {}) {
       {
         value: "cross",
       },
-      {
-        value: "custom",
-      },
+      // {
+      //   value: "custom",
+      // },
     ],
     labelTrue: "if true",
     labelFalse: "if false",
