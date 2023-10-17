@@ -16,9 +16,9 @@ export default function (editor, opts = {}) {
       {
         value: "radio",
       },
-      {
-        value: "custom",
-      },
+      // {
+      //   value: "custom",
+      // },
     ],
     ...opts,
   };
