@@ -85,8 +85,8 @@ export default function (editor, opts = {}) {
       // set style based on value from UI
       const dir =
         inPos === "" || inPos === "bottom"
-          ? { "flex-direction": inPos === "" ? "column-reverse" : "column" }
-          : { "flex-direction": "row" };
+          ? { "flex-direction": inPos === "" ? "column-reverse" : "column", "align-items": "center" }
+          : { "flex-direction": "row", "align-items": "center" };
       label.addStyle({ order: inPos === "left" ? "-1" : "1" });
       checkbox.addStyle(dir);
       this.updateAlignment(inPos === "" || inPos === "bottom")
