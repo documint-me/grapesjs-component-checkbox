@@ -52,7 +52,7 @@ export default function (editor, opts = {}) {
         });
       });
 
-      editor.on("component:selected", () => this.updateUI());
+      editor.on("component:selected checkbox:update:position", () => this.updateUI());
 
       return el;
     },

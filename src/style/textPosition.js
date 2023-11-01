@@ -87,6 +87,7 @@ export default function (editor, opts = {}) {
         inPos === "" || inPos === "bottom"
           ? { "flex-direction": inPos === "" ? "column-reverse" : "column", "align-items": "center" }
           : { "flex-direction": "row", "align-items": "center" };
+      editor.trigger("checkbox:update:position")
       label.addStyle({ order: inPos === "left" ? "-1" : "1" });
       checkbox.addStyle(dir);
       this.updateAlignment(inPos === "" || inPos === "bottom")
